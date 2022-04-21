@@ -1,0 +1,66 @@
+body {
+    background-color: gainsboro;
+    text-align: center;
+    font-size: 175%;
+}
+h1 {
+    font-family: sans-serif;
+    text-shadow: 10px 11px 18px rgba(300, 180, 100, 1),
+    -10px -11px 18px red;
+    cursor: default;
+}
+h2 {
+    cursor: default;
+}
+div.box {
+    display: flexbox;
+    position: relative;
+    border-width: 3px;
+	border-style: ridge;     
+    border-color: firebrick;
+	margin-top: 2em;
+    margin-bottom: 2em;
+    margin-left: 30%;
+    margin-right: 30%;
+    min-width: 20%;
+    border-top-left-radius: 2%;
+    border-top-right-radius: 2%;
+    border-bottom-left-radius: 2%;
+    border-bottom-right-radius: 2%;
+}
+div {
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+.bottoni {
+    width: 100px;
+    height: 50px;
+    font-weight: bold;
+    margin: 2ex;
+    cursor: pointer;
+    font-size: large;
+}
+.bottoni:hover {
+    background-color:honeydew;
+}
+.bottoneHome {
+    width: 200px;
+    height: 50px;
+    font-weight: bold;
+    font-size: large;
+    margin: 2ex;
+    cursor: pointer;
+}
+.bottoneHome:hover {
+    background-color:honeydew;
+}
+.textField {
+    width: 200px;
+    height: 30px;
+    font-size: large;
+    margin-bottom: 2em;
+    position: relative;
+}
+.textField:hover {
+    background-color:honeydew;
+}
