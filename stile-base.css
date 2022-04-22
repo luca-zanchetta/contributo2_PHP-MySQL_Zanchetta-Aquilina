@@ -1,0 +1,147 @@
+/*classe contente le regole di stile comuni a tutte le pagine del sito*/
+body {
+    font-family: helvetica,arial,sans-serif;
+    background-image: url(sfondo.jpg);/*da decidere*/
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    line-height: 1.5em;
+}
+
+/*Div contentenente tutto il titolo*/
+div.menu {
+    top: 0;
+    left: 0;
+    background-color: gainsboro;
+    position: fixed;
+    width: 100%;
+}
+div.blocco-centrale {
+    margin-top: 5%;
+    padding-top: 2%;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+div.menu-fixed-container {
+    width: 10%;
+    float: left;
+    height: 200px;
+    text-align: center;
+    display: flex;
+    text-overflow: wrap;
+    position: relative;
+}
+div.menu-tendina {
+    display: flex;
+    background-color: pink;
+    border-radius: 24px;
+    position:fixed;
+    padding: 1.5%;
+    flex: 1;
+    flex-direction: column;
+}
+
+div.voci-tendina {
+    text-align: center;
+    display: flex;
+    flex:1;
+    width: 100%;
+    padding: 2%;
+    font-size: 1em;
+}
+div.colonna-esami {
+    width: 88%;
+    min-width: none;
+    overflow: hidden;
+}
+div.container-esami {
+    justify-content: center;  
+    display: flex; 
+    flex-wrap: wrap; 
+    width: 100%;
+}
+
+div.blocco-esame {
+    margin: 1%;
+    width: 450px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    background-color: aqua;
+    align-content: space-around;
+    align-items: center;
+}
+
+div.title {
+    justify-content: center;
+    display: flex;
+    flex: 100%;
+}
+
+/*contenitori di testo*/
+
+span#title {
+    padding:2%;
+    float: left;
+    font-size: 2em;
+    font-weight: bold;
+    color: red;
+}
+span#logout {
+    padding: 2%;
+    float: right;
+    text-decoration: underline;
+    font-size: 1.7em;
+}
+
+span.nome-esame {
+    justify-content: space-around;
+    display: inline-flex;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+span.info-button {
+    display: inline-flex;
+    margin-top: 15%;
+    border: 2px solid black;
+    justify-content: space-around;
+    padding: 1%;
+    width: 30%;
+}
+span#pagetitle {
+    font-size: 2em;
+    font-weight: bold;
+    color: red;
+    overflow: hidden;
+}
+/*media query*/
+@media screen and (max-width: 600px) {
+    body {
+      background-color: olive;
+    }  
+    
+    div.menu-fixed-container {
+        float: left;
+        height: 200px;
+        text-align: center;
+        display: flex;
+        text-overflow: wrap;
+    }
+    div.menu-tendina {
+        display: flex;
+        background-color: pink;
+        border-radius: 24px;
+        padding: 1.5%;
+        flex: 1;
+        flex-direction: column;
+    }
+  }
+
+/*eventi*/
+div.voci-tendina:hover {
+    background-color: rgba(0, 255, 255, 0.67);
+}
