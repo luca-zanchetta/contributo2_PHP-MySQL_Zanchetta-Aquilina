@@ -2,6 +2,7 @@ body {
     background-color: gainsboro;
     text-align: center;
     font-size: 175%;
+    font-family: helvetica,arial,sans-serif;
 }
 h1 {
     font-family: sans-serif;
@@ -23,10 +24,26 @@ div.box {
     margin-left: 30%;
     margin-right: 30%;
     min-width: 20%;
-    border-top-left-radius: 2%;
-    border-top-right-radius: 2%;
-    border-bottom-left-radius: 2%;
-    border-bottom-right-radius: 2%;
+    border-top-left-radius: 4%;
+    border-top-right-radius: 4%;
+    border-bottom-left-radius: 4%;
+    border-bottom-right-radius: 4%;
+}
+div.box2 {
+    display: flexbox;
+    position: relative;
+    border-width: 3px;
+	border-style: ridge;     
+    border-color: firebrick;
+    background-color: lightgoldenrodyellow;
+	margin-top: -20.7em;
+    margin-bottom: 2%;
+    margin-left: 5%;
+    margin-right: 73%;
+    border-top-left-radius: 4%;
+    border-top-right-radius: 4%;
+    border-bottom-left-radius: 4%;
+    border-bottom-right-radius: 4%;
 }
 div {
     margin-top: 2em;
@@ -40,7 +57,15 @@ div {
     cursor: pointer;
     font-size: large;
 }
-.bottoni:hover {
+.bottoni2 {
+    width: 200px;
+    height: 50px;
+    font-weight: bold;
+    margin: 2ex;
+    cursor: pointer;
+    font-size: large;
+}
+.bottoni:hover, .bottoni2:hover {
     background-color:honeydew;
 }
 .bottoneHome {
