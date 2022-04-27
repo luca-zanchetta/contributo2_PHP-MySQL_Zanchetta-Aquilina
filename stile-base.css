@@ -32,8 +32,10 @@ div.nav-left {
 .nav-left>h2{
     margin: 15px;
     color: white;
+    position: relative;
 }
 div.nav-logo {
+    position: relative;
     object-fit: contain;
     margin-left: 20px;
 }
@@ -63,11 +65,24 @@ div.vertical-bar {
     border-left: 1px solid #4a4a4c;
     height: 3rem;
 }
-
+.nav-logo>input {
+    display: inline;
+    background-color: #ffffff00;
+    position: absolute;
+    border: none;
+    width: 100%;
+}
+.nav-left>h2>input {
+    display: inline;
+    background-color: #ffffff00;
+    position: absolute;
+    border: none;
+    width: 100%;
+}   
 /*Menu fixed sulla sinistra*/
 .sidebar {
     padding: 10px;
-    width: 13%;
+    width: 10%;
     background-color: #1f1f23;
     display: flex;
     flex-direction: column;
@@ -84,10 +99,11 @@ div.central-block {
 div.body {
     padding-top: 2%;
     display: flex;
-    flex: 1;
-    height: 100vh;
+    flex: 1;   
     overflow: scroll;
+    height: 100vh;
     flex-direction: column;
+    padding-bottom: 2%;
 }
 div.body-title {
     display: flex;
@@ -99,17 +115,18 @@ div.body-title>h2 {
 }
 /*contenitore blocco esami*/
 div.container-esami {
-    justify-content: center;  
+    justify-content: center; 
     display: flex; 
-    flex-wrap: wrap; 
-    width: 100%;
+    flex-wrap: wrap;
+    padding-bottom: 10%;
 }
 
 div.blocco-esame {
     margin: 1%;
     width: 450px;
+    height: 150px;
     border-radius: 20px;
-    display: flex;
+    display: flex; 
     flex-direction: column;
     padding: 1em;
     background-color: aqua;
@@ -118,20 +135,6 @@ div.blocco-esame {
 }
 
 /*contenitori di testo*/
-
-span#title {
-    padding:2%;
-    float: left;
-    font-size: 2em;
-    font-weight: bold;
-    color: red;
-}
-span#logout {
-    padding: 2%;
-    float: right;
-    text-decoration: underline;
-    font-size: 1.7em;
-}
 
 span.nome-esame {
     justify-content: space-around;
@@ -154,7 +157,7 @@ span#pagetitle {
     color: red;
     overflow: hidden;
 }
-/*media query*/
+/*media query
 @media screen and (max-width: 600px) {
     body {
       background-color: olive;
@@ -176,8 +179,8 @@ span#pagetitle {
         flex-direction: column;
     }
   }
-
+*/
 /*eventi*/
-div.voci-tendina:hover {
+.sidebar>h5:hover{
     background-color: rgba(0, 255, 255, 0.67);
 }
