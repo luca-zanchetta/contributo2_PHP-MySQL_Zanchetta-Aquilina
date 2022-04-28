@@ -17,17 +17,17 @@ if (mysqli_connect_errno()) {
 
 if(!isset($_POST['matricola']) || !isset($_POST['pwd']) || !isset($_POST['nome']) || !isset($_POST['cognome'])) {
     printf("\nERRORE: problema nell'inserimento dei dati.\n");
-    header("login.php");
+    header('Location: login.php');
 }
 elseif($_POST['matricola'] == "" || $_POST['pwd'] == "" || $_POST['nome'] == "" || $_POST['cognome'] == "") {
     printf("\nERRORE: dati mancanti.\n");
-    header("login.php");
+    header('Location: login.php');
 }
 
 
 
 $sqlInsert = "INSERT INTO studente VALUES
-('{$_POST['matricola']}', '{$_POST['nome']}', '{$_POST['cognome']', '{$_POST['pwd']');";
+('{$_POST['matricola']}', '{$_POST['nome']}', '{$_POST['cognome']}', '{$_POST['pwd']}');";
 try {
     if($resultQ = mysqli_query($mysqliConnection, $sqlInsert)) {
         echo "

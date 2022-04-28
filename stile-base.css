@@ -184,3 +184,9 @@ span#pagetitle {
 .sidebar>h5:hover{
     background-color: rgba(0, 255, 255, 0.67);
 }
+a.logout {
+    all: inherit;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}

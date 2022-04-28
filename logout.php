@@ -1,3 +1,9 @@
+<?php
+    session_start();
+    unset($_SESSION);
+    session_destroy();
+?>
+
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html
 PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -6,13 +12,12 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 <head>
-    <title>Registrazione - MiniInfostud</title>
+    <title>Logout - Infostud</title>
     <link rel="stylesheet" href="stileLogin.css">
 </head>
 
 <body>
-
-
+<form action="login.php">
 <div class="header">
     <div class="nav-left">
         <div class="nav-logo">
@@ -29,26 +34,16 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 </div>
 <div class="central-block">
     <div class="body">
-        <h2 class="title">REGISTRATI</h2>   
-
-        <form action="registrazione.php" method="post"> 
-        <div class="boxRegistrazione">
-            <h3>Matricola:</h3>
-            <input class="textField" type="text" name="matricola">
-            <h3>Nome:</h3>
-            <input class="textField" type="text" name="nome">
-            <h3>Cognome:</h3>
-            <input class="textField" type="text" name="cognome">
-            <h3>Password:</h3>
-            <input class="textField" type="password" name="pwd">
+        <div class="box">
+            <h1>Disconnessione avvenuta con successo!</h1>
         </div>
         <div>
-            <input class="bottoni" type="reset" value="Cancella">
-            <input class="bottoni" type="submit" name="invio" value="Invio">
+            <input class="bottoneHome" type="submit" name="invio" value="Torna alla home">
         </div>
-        </form>
     </div>
 </div>
 
+
+</form>
 </body>
 </html>

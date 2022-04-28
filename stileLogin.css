@@ -287,3 +287,11 @@ h2.title {
     font-size: 200%;
     font-weight: bold;
 }
+h2.error {
+    position: relative;
+    text-align: center;
+    font-size: 200%;
+    font-weight: bold;
+    color: blue;
+    margin-top: 7em;
+}
