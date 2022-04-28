@@ -16,10 +16,30 @@ if(isset($_POST['invio']) && !($_POST['matricola'] == "" || $_POST['password'] =
 
     /* VERIFICA LOGIN */
 
+    $sql_get_password = "SELECT password
+    FROM studente
+    WHERE matricola = \"{$_POST['matricola']}\"
+    ";
+    if(!$resultQ = mysqli_query($mysqliConnection, $sql_get_password)) {
+        printf("\nERRORE: La query di recupero password non funziona correttamente.\n");
+        exit();
+    }
+    $pass_enc = mysqli_fetch_array($resultQ); // Password criptata
+
+    /* Fonte: https://rosariociaglia.altervista.org/crittografia-e-decrittografia-con-php-come-criptare-e-decriptare-stringhe/ */
+    
+    $password = $_POST['password']; //password inviata dall'utente da un form con la classica variabile $_POST['password']
+    $key_enc = '0274'; //chiave per la crittografia
+    $met_enc = 'aes256'; //metodo per la crittografia: aes128, aes192, aes256, blowfish, cast-cbc
+    $iv = 'ma1R0ikDD56_hG12'; //una stringa random con 16 caratteri
+
+    //Crittografare la password
+    $pass_enc = openssl_encrypt($password, $met_enc, $key_enc, 0, $iv);
+
     $sql_get_students = "SELECT * 
     FROM studente 
     WHERE matricola = \"{$_POST['matricola']}\" 
-    AND password = \"{$_POST['password']}\"
+    AND password = \"{$pass_enc}\"
     ";
     if(!$resultQ = mysqli_query($mysqliConnection, $sql_get_students)) {
         printf("\nERRORE: La query di controllo login non funziona correttamente.\n");
@@ -59,9 +79,6 @@ if(isset($_POST['invio']) && !($_POST['matricola'] == "" || $_POST['password'] =
                     <h2>
                         Infostud
                     </h2>
-            </div>
-            <div class=\"nav-central\">
-                <input type=\"text\" name=\"riceca\" id=\"\">
             </div>
             <div class=\"nav-right\">
                 <img src=\"https://w7.pngwing.com/pngs/73/580/png-transparent-arturia-business-logo-musical-instruments-individual-retirement-account-logo-business-sound.png\" alt=\"dasdas\" width=\"100px\">

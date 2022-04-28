@@ -25,9 +25,24 @@ elseif($_POST['matricola'] == "" || $_POST['pwd'] == "" || $_POST['nome'] == "" 
 }
 
 
+/* AGGIUNTA CRIPTAGGIO PASSWORD */
+/* Fonte: https://rosariociaglia.altervista.org/crittografia-e-decrittografia-con-php-come-criptare-e-decriptare-stringhe/ */
+
+
+$password = $_POST['pwd']; //password inviata dall'utente da un form con la classica variabile $_POST['password']
+$key_enc = '0274'; //chiave per la crittografia
+$met_enc = 'aes256'; //metodo per la crittografia: aes128, aes192, aes256, blowfish, cast-cbc
+$iv = 'ma1R0ikDD56_hG12'; //una stringa random con 16 caratteri
+
+//Crittografare la password
+$pass_enc = openssl_encrypt($password, $met_enc, $key_enc, 0, $iv);
+
+
+
+
 
 $sqlInsert = "INSERT INTO studente VALUES
-('{$_POST['matricola']}', '{$_POST['nome']}', '{$_POST['cognome']}', '{$_POST['pwd']}');";
+('{$_POST['matricola']}', '{$_POST['nome']}', '{$_POST['cognome']}', '{$pass_enc}');";
 try {
     if($resultQ = mysqli_query($mysqliConnection, $sqlInsert)) {
         echo "
@@ -54,9 +69,6 @@ try {
                     <h2>
                         Infostud
                     </h2>
-            </div>
-            <div class=\"nav-central\">
-                <input type=\"text\" name=\"riceca\" id=\"\">
             </div>
             <div class=\"nav-right\">
                 <img src=\"https://w7.pngwing.com/pngs/73/580/png-transparent-arturia-business-logo-musical-instruments-individual-retirement-account-logo-business-sound.png\" alt=\"dasdas\" width=\"100px\">
@@ -104,9 +116,6 @@ try {
                         Infostud
                     </h2>
             </div>
-            <div class=\"nav-central\">
-                <input type=\"text\" name=\"riceca\" id=\"\">
-            </div>
             <div class=\"nav-right\">
                 <img src=\"https://w7.pngwing.com/pngs/73/580/png-transparent-arturia-business-logo-musical-instruments-individual-retirement-account-logo-business-sound.png\" alt=\"dasdas\" width=\"100px\">
             </div>
@@ -153,9 +162,6 @@ catch(mysqli_sql_exception $exception) {
                     <h2>
                         Infostud
                     </h2>
-            </div>
-            <div class=\"nav-central\">
-                <input type=\"text\" name=\"riceca\" id=\"\">
             </div>
             <div class=\"nav-right\">
                 <img src=\"https://w7.pngwing.com/pngs/73/580/png-transparent-arturia-business-logo-musical-instruments-individual-retirement-account-logo-business-sound.png\" alt=\"dasdas\" width=\"100px\">
