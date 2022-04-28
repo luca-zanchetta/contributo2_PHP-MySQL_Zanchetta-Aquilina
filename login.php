@@ -29,19 +29,13 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
                 Infostud
             </h2>
     </div>
-    <div class="nav-central">
-        <input type="text" name="riceca" id="">
-    </div>
     <div class="nav-right">
         <img src="https://w7.pngwing.com/pngs/73/580/png-transparent-arturia-business-logo-musical-instruments-individual-retirement-account-logo-business-sound.png" alt="dasdas" width="100px">
     </div>
 </div>
 <div class="central-block">
     <div class="body">
-        <div class="body-title">
-            <span id="title">LOGIN</span>    
-        </div>
-        <br />
+        <h2 class="title">LOGIN</h2> 
         <div class="box">
             <h2>Matricola:</h2>
             <input class="textField" type="text" name="matricola">

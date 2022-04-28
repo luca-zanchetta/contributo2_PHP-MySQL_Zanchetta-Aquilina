@@ -87,11 +87,13 @@ div.body {
     display: flex;
     flex: 1;
     height: 100vh;
-    overflow: scroll;
+    overflow: none;
     flex-direction: column;
 }
 div.body-title {
     display: flex;
+    text-align: center;
+    align-items: center;
 }
 /*contenitore blocco esami*/
 div.container-esami {
@@ -128,8 +130,8 @@ span#titleReg {
     font-weight: bold;
     color: red;
     position: relative;
-    margin-left: 42%;
-    font-size: 200%;
+    margin-left: 43%;
+    
 }
 span#logout {
     padding: 2%;
@@ -225,13 +227,13 @@ h1, h2, h3, h4 {
     border-bottom-right-radius: 4%;
 }
 .boxRegistrazione {
-    display: flexbox;
+    display: flexbpx;
     position: relative;
     border-width: 3px;
 	border-style: ridge;     
     border-color: firebrick;
     margin-bottom: 3em;
-    margin-left: 32%;
+    margin-left: 35%;
     margin-right: 35%;
     min-width: 20%;
     border-top-left-radius: 4%;
@@ -239,11 +241,6 @@ h1, h2, h3, h4 {
     border-bottom-left-radius: 4%;
     border-bottom-right-radius: 4%;
     background-color: gainsboro;
-}
-td {
-    align-items: center;
-    padding: 5%;
-    margin-left: 5%;
 }
 .bottoni {
     width: 100px;
@@ -284,13 +281,9 @@ td {
 .textField:hover {
     background-color:honeydew;
 }
-.textFieldReg {
-    width: 200px;
-    height: 30px;
-    font-size: large;
-    margin-left: 2em;
-    margin-right: 5em;
-}
-.textFieldReg:hover {
-    background-color:honeydew;
+h2.title {
+    color: red;
+    text-align: center;
+    font-size: 200%;
+    font-weight: bold;
 }

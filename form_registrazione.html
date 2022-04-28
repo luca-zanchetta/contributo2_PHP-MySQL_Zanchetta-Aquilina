@@ -23,43 +23,25 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
                 Infostud
             </h2>
     </div>
-    <div class="nav-central">
-        <input type="text" name="riceca" id="">
-    </div>
     <div class="nav-right">
         <img src="https://w7.pngwing.com/pngs/73/580/png-transparent-arturia-business-logo-musical-instruments-individual-retirement-account-logo-business-sound.png" alt="dasdas" width="100px">
     </div>
 </div>
 <div class="central-block">
     <div class="body">
-        <form action="registrazione.php" method="post">
-        <div class="body-title">
-            <span id="titleReg">REGISTRATI</span>    
+        <h2 class="title">REGISTRATI</h2>   
+
+        <form action="registrazione.php" method="post"> 
+        <div class="boxRegistrazione">
+            <h3>Matricola:</h3>
+            <input class="textField" type="text" name="matricola">
+            <h3>Nome:</h3>
+            <input class="textField" type="text" name="nome">
+            <h3>Password:</h3>
+            <input class="textField" type="password" name="pwd">    
+            <h3>Cognome:</h3>
+            <input class="textField" type="text" name="cognome">
         </div>
-        <br />
-        <table class="boxRegistrazione">
-            <tr>
-                <td>
-                    <h3>Matricola:</h3>
-                    <input class="textFieldReg" type="text" name="matricola">
-                </td>
-                <td>
-                    <h3>Nome:</h3>
-                    <input class="textFieldReg" type="text" name="nome">
-            
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <h3>Password:</h3>
-                    <input class="textFieldReg" type="password" name="pwd">    
-                </td>
-                <td>
-                    <h3>Cognome:</h3>
-                    <input class="textFieldReg" type="text" name="cognome">
-                </td>
-            </tr>
-        </table>
         <div>
             <input class="bottoni" type="reset" value="Cancella">
             <input class="bottoni" type="submit" name="invio" value="Invio">
