@@ -68,41 +68,71 @@
     </div>
     <div class="central-block">
         <div class="sidebar">
-            <h5>Prenota Esame</h5>
-            <h5>Iscriviti a un corso</h5>
-            <h5>Visualizza corsi</h5>
+            <h5>
+                <a class="opzione" href="fittizia.php">Prenota Esame</a>
+            </h5>
+            <h5>
+                <a class="opzione" href="fittizia.php">Iscriviti a un corso</a>
+            </h5>
+            <h5>
+                <a class="opzione" href="fittizia.php">Visualizza corsi</a>
+            </h5>
         </div>
         <div class="body">
             <h1 style="text-align: center; color: green;">Benvenuto/a, <?php echo "$nome";?>!</h1>
-            <div class="body-title">
-                <h2>Corsi a cui sei iscritto/a:</h2>     
-            </div>
+            <?php
+                $query_visualizza_iscrizioni = "SELECT *
+                FROM corso
+                WHERE corso.id IN (
+                    SELECT iscrizione.id_corso
+                    FROM iscrizione
+                    WHERE iscrizione.id_studente LIKE '1848878'
+                )";
+                        
+                try{
+                    $result = $mysqliConnection->query($query_visualizza_iscrizioni);
+                    if ($result->num_rows > 0) {
+                        ?>
+                            <div class="body-title">
+                                <h2>Corsi a cui sei iscritto/a:</h2>     
+                            </div>
+                        <?php
+                    }
+                }
+                catch(mysqli_sql_exception $e){
+                    echo "error!";
+                }
+            ?>
             <div class="container-esami">
                 <?php
-                            try{
-                                $result = $mysqliConnection->query("SELECT * FROM corso;");
-                                if ($result->num_rows > 0) {
-                                    while($row = $result->fetch_assoc()){
-                                        ?>
-                                        
-                                            <div class="blocco-esame" style="background-color:<?php echo $row["id_colore"]?>">
-                                                <span class="nome-esame" >
-                                                    <?php echo $row["nome"]?>
-                                                </span>
-                                                <span class="info-button">
-                                                    info
-                                                </span>       
-                                            </div>                                   
-                                    <?php
-                                    }  
-                                }
-                            }catch(mysqli_sql_exception $e){
-                                echo "error!";
-                            }
-                        ?>   
-                        </div>           
-                    </div>
-                </div>
+                    if ($result->num_rows > 0) {
+                        while($row = $result->fetch_assoc()){
+                            ?>
+                                <div class="blocco-esame" style="background-color:<?php echo $row["id_colore"]?>">
+                                    <span class="nome-esame" >
+                                        <?php echo $row["nome"]?>
+                                    </span>
+                                    <span class="info-button">
+                                        info
+                                    </span>       
+                                </div>                                   
+                        <?php
+                        }  
+                    }
+                    elseif($result->num_rows == 0) {
+                        ?>
+                            <form action="fittizia.php" method="post">
+                            <div class="zero-esami_central">
+                                <h2>Non risultano iscrizioni ad alcun corso.</h2>
+                                <input class="button-iscrizione" type="submit" name="iscriviti" value="ISCRIVITI AD UN CORSO">
+                            </div>
+                            </form>
+                        <?php
+                    }
+                ?>   
+            </div>           
         </div>
-    </body>
+    </div>
+</div>
+</body>
 </html>
