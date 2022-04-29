@@ -48,7 +48,10 @@ div.nav-central{
     overflow: hidden;
     align-items: center;
 }
-.nav-central>input{
+.nav-central>form {
+    display: flex;
+}
+.nav-central>form>input{
     outline: none;
     background-color: transparent;
     flex: 1;
@@ -72,7 +75,7 @@ div.vertical-bar {
     border: none;
     width: 100%;
 }
-.nav-left>h2>input {
+.nav-left>h2>form>input {
     display: inline;
     background-color: #ffffff00;
     position: absolute;
@@ -159,6 +162,7 @@ input.button-iscrizione {
 input.button-iscrizione:hover {
     background-color:honeydew;
 }
+
 div.zero-esami_central {
     text-align: center;
     display: flexbox;
@@ -180,20 +184,34 @@ div.zero-esami_central {
 
 /*contenitori di testo*/
 
-span.nome-esame {
+div.nome-esame {
     justify-content: space-around;
     display: inline-flex;
     font-size: 1.1em;
     font-weight: bold;
 }
 
-span.info-button {
+div.info-button {
     display: inline-flex;
     margin-top: 15%;
     border: 2px solid black;
-    justify-content: space-around;
+    justify-content: center;
     padding: 1%;
     width: 30%;
+    cursor: pointer;
+    position: relative;
+}
+.info-button:hover {
+    background-color: rgba(0, 255, 255, 0.396);
+}
+.info-button>form>input {
+    top: 0;
+    left: 0;
+    background-color: #ffffff00;
+    position: absolute;
+    border: none;
+    width: 100%;
+    height: 100%;
 }
 span#pagetitle {
     font-size: 2em;

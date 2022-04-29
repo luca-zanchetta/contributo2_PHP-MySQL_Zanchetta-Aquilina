@@ -12,6 +12,7 @@
     }
 
     
+
     session_start();
     if($_SESSION['matricola']) {
         $sql_get_student_name = "SELECT nome
@@ -35,7 +36,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
     <link rel="stylesheet" href="stile-base.css">
-    <title>Homepage</title>
+    <title>Homepage - Iscrizione</title>
 </head>
 <body>
     <div class="header">
@@ -58,13 +59,13 @@
                 </h2>
         </div>
         <div class="nav-central">
-            <form action="homepage.php" method="GET">
+            <form action="iscriviti.php" style="width: 100%;">
                 <div class="nav-logo">
                     <input type="submit" name="ricerca" value="">
                     <img src="search.png" alt="err" width="20px" style="display: inline-flex;">
-                </div>    
-                    <input type="text" name="filtro">              
-            </form>
+                </div>   
+                <input type="text" name="filtro">
+            </form> 
         </div>
         <div class="nav-right">
             <img src="account.png" alt="dasdas" width="90px">
@@ -85,22 +86,27 @@
         <div class="body">
             <h1 style="text-align: center; color: green;">Benvenuto/a, <?php echo "$nome";?>!</h1>
             <?php
-                //controlliamo se la pagina è stata lanciata da se stessa tramite la form di ricerca
                 if(!isset($_GET['filtro']) || $_GET['filtro'] == ''){
-                    $query_visualizza_iscrizioni = "SELECT *
-                    FROM corso c,iscrizione i
-                    WHERE c.id = i.id_corso AND i.id_studente = \"{$_SESSION['matricola']}\"";
+                    $query_iscrizioni_possibili = "SELECT *
+                    FROM corso c
+                    WHERE NOT EXISTS (
+                        SELECT *
+                        FROM iscrizione i
+                        WHERE c.id = i.id_corso AND i.id_studente = \"{$_SESSION['matricola']}\");";
                 }else {
-                    $query_visualizza_iscrizioni = "SELECT *
-                    FROM corso c,iscrizione i
-                    WHERE c.id = i.id_corso AND i.id_studente =\"".$_SESSION['matricola']."\" AND c.nome LIKE\"".$_GET['filtro']."%\"";
-                }    
+                    $query_iscrizioni_possibili = "SELECT *
+                    FROM corso c
+                    WHERE NOT EXISTS (
+                        SELECT *
+                        FROM iscrizione i
+                        WHERE c.id = i.id_corso AND i.id_studente = \"{$_SESSION['matricola']}\") AND c.nome like \"".$_GET['filtro']."%\"";
+                }           
                 try{
-                    $result = $mysqliConnection->query($query_visualizza_iscrizioni);
+                    $result = $mysqliConnection->query($query_iscrizioni_possibili);
                     if ($result->num_rows > 0) {
                         ?>
                             <div class="body-title">
-                                <h2>Corsi a cui sei iscritto/a:</h2>     
+                                <h2>Corsi a cui puoi iscriverti/a:</h2>     
                             </div>
                         <?php
                     }
@@ -119,31 +125,21 @@
                                         <?php echo $row["nome"]?>
                                     </div> 
                                     <div class="info-button">
-                                            Info
-                                            <form action="visualizza-corso.php" method="GET"> <!--Da implementare-->
+                                            Iscriviti
+                                            <form action="iscriviti-a-corso.php" method="GET">
                                                 <input type="submit" name="iscriviti" value="" >
                                                 <input type="hidden" name="corso" value=" <?php echo $row["id"] ?>">
                                             </form>
                                     </div>  
-                                </div>                                     
+                                </div>                                   
                         <?php
                         }  
                     }
-                    elseif($result->num_rows == 0 and !isset($_GET['filtro'])) {
+                    elseif($result->num_rows == 0) {
                         ?>
                             <form action="fittizia.php" method="post">
                             <div class="zero-esami_central">
-                                <h2>Non risultano iscrizioni ad alcun corso.</h2>
-                                <input class="button-iscrizione" type="submit" name="iscriviti" value="ISCRIVITI AD UN CORSO">
-                            </div>
-                            </form>
-                        <?php
-                    }elseif($result->num_rows == 0 and isset($_GET['filtro'])) {
-                        ?>
-                            <form action="fittizia.php" method="post">
-                            <div class="zero-esami_central">
-                                <h2>Non sei iscritto a nessun corso con quel nome. Forse devi ancora iscriverti.</h2>
-                                <input class="button-iscrizione" type="submit" name="iscriviti" value="ISCRIVITI AD UN CORSO">
+                                <h2>Nessun esame trovato.</h2>
                             </div>
                             </form>
                         <?php
