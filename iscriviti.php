@@ -85,9 +85,11 @@
             <h5>
                 <a class="opzione" href="homepage.php">Visualizza corsi</a>
             </h5>
+            <h5>
+                <a class="opzione" href="cancellaIscrizione.php">Cancella iscrizione</a>
+            </h5>
         </div>
         <div class="body">
-            <h1 style="text-align: center; color: green;">Benvenuto/a, <?php echo "$nome";?>!</h1>
             <?php
                 if(!isset($_GET['filtro']) || $_GET['filtro'] == ''){
                     $query_iscrizioni_possibili = "SELECT *

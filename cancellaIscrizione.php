@@ -1,5 +1,4 @@
 <?php
-    ini_set('display_errors', 0);
     $host = "localhost";
     $mysql_user = "admin";
     $mysql_pwd = "admin";
@@ -89,7 +88,7 @@
             </h5>
         </div>
         <div class="body">
-            <h1 style="text-align: center; color: green;">Benvenuto/a, <?php echo "$nome";?>!</h1>
+            <h2 style="color: red; text-align: center; font-size: 200%; font-weight: bold;">CANCELLA ISCRIZIONE</h2>  
             <?php
                 //controlliamo se la pagina è stata lanciata da se stessa tramite la form di ricerca
                 if(!isset($_GET['filtro']) || $_GET['filtro'] == ''){
@@ -125,9 +124,9 @@
                                         <?php echo $row["nome"]?>
                                     </div> 
                                     <div class="info-button">
-                                            Info
-                                            <form action="fittizia.php" method="GET"> <!--Da implementare  visualizza-corso.php-->
-                                                <input type="submit" name="iscriviti" value="" >
+                                            CANCELLA
+                                            <form action="cancellaIscrizioneSCRIPT.php" method="GET">
+                                                <input type="submit" name="cancella" value="">
                                                 <input type="hidden" name="corso" value=" <?php echo $row["id"] ?>">
                                             </form>
                                     </div>  

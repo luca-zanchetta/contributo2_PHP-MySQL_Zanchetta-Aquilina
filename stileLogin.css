@@ -67,15 +67,24 @@ div.vertical-bar {
 /*Menu fixed sulla sinistra*/
 .sidebar {
     padding: 10px;
-    width: 13%;
+    width: 10%;
     background-color: #1f1f23;
     display: flex;
     flex-direction: column;
 }
-.reg {
-    margin-top: 30%;
+.sidebar>h5{
+    margin-top: 25px;
     margin-bottom: 25px;
     color: white;
+}
+a.opzione {
+    all: inherit;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+a.opzione:hover{
+    background-color: rgba(0, 255, 255, 0.67);
 }
 /*corpo della pagina*/
 div.central-block {

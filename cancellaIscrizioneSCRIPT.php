@@ -27,11 +27,13 @@
         }
     }else include("login.php");
 
-    //effettuiamo l'iscrizione all'esame
-    $nome_esame = $_GET['corso'];
-    $query_iscrizione_corso = "INSERT INTO iscrizione VALUES (\"{$_SESSION['matricola']}\",\"{$_GET['corso']}\", current_date())";
+    //effettuiamo la cancellazione dell'iscrizione al corso
+    $id_corso = $_GET['corso'];
+    $query_cancella_iscrizione_corso = "DELETE FROM iscrizione
+                                        WHERE id_studente = \"{$_SESSION['matricola']}\"
+                                        AND id_corso = {$id_corso}";
 
-    if($mysqliConnection->query($query_iscrizione_corso) == TRUE) {
+    if($mysqliConnection->query($query_cancella_iscrizione_corso) == TRUE) {
         ?>
             <?xml version="1.0" encoding="UTF-8"?>
             <!DOCTYPE html
@@ -88,7 +90,7 @@
                 </div>
                 <div class="body">
                     <div class="box-avviso">
-                        <h1>Iscrizione avvenuta con successo!</h1>
+                        <h1>Cancellazione avvenuta con successo!</h1>
                     </div>
                     <div style="text-align: center;">
                         <?php
