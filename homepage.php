@@ -41,7 +41,9 @@
     <div class="header">
         <div class="nav-left">
             <div class="nav-logo">
-                <img src="https://store-images.s-microsoft.com/image/apps.51215.9007199266623456.05e3a154-d5ac-49d8-af6e-ab2f789dc26d.f443b25b-1668-48aa-8137-f8e5609aee45?mode=scale&q=90&h=300&w=300" alt="logo" width="90px">
+                <a href="homepage.php">
+                    <img src="https://store-images.s-microsoft.com/image/apps.51215.9007199266623456.05e3a154-d5ac-49d8-af6e-ab2f789dc26d.f443b25b-1668-48aa-8137-f8e5609aee45?mode=scale&q=90&h=300&w=300" alt="logo" width="90px">
+                </a>
             </div>
             <div class="vertical-bar"></div>
                 <h2>
@@ -120,7 +122,7 @@
                                     </div> 
                                     <div class="info-button">
                                             Info
-                                            <form action="visualizza-corso.php" method="GET"> <!--Da implementare-->
+                                            <form action="fittizia.php" method="GET"> <!--Da implementare  visualizza-corso.php-->
                                                 <input type="submit" name="iscriviti" value="" >
                                                 <input type="hidden" name="corso" value=" <?php echo $row["id"] ?>">
                                             </form>
@@ -131,7 +133,7 @@
                     }
                     elseif($result->num_rows == 0 and !isset($_GET['filtro'])) {
                         ?>
-                            <form action="fittizia.php" method="post">
+                            <form action="iscriviti.php" method="post">
                             <div class="zero-esami_central">
                                 <h2>Non risultano iscrizioni ad alcun corso.</h2>
                                 <input class="button-iscrizione" type="submit" name="iscriviti" value="ISCRIVITI AD UN CORSO">
@@ -140,10 +142,10 @@
                         <?php
                     }elseif($result->num_rows == 0 and isset($_GET['filtro'])) {
                         ?>
-                            <form action="fittizia.php" method="post">
+                            <form action="homepage.php" method="post">
                             <div class="zero-esami_central">
                                 <h2>Non sei iscritto a nessun corso con quel nome. Forse devi ancora iscriverti.</h2>
-                                <input class="button-iscrizione" type="submit" name="iscriviti" value="ISCRIVITI AD UN CORSO">
+                                <input class="button-iscrizione" type="submit" name="home" value="TORNA ALLA HOME">
                             </div>
                             </form>
                         <?php

@@ -1,4 +1,5 @@
 <?php
+    ini_set('display_errors', 0);
     $host = "localhost";
     $mysql_user = "admin";
     $mysql_pwd = "admin";
@@ -36,13 +37,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
     <link rel="stylesheet" href="stile-base.css">
-    <title>Homepage - Iscrizione</title>
+    <title>Iscrizione - Infostud</title>
 </head>
 <body>
     <div class="header">
         <div class="nav-left">
             <div class="nav-logo">
-                <img src="https://store-images.s-microsoft.com/image/apps.51215.9007199266623456.05e3a154-d5ac-49d8-af6e-ab2f789dc26d.f443b25b-1668-48aa-8137-f8e5609aee45?mode=scale&q=90&h=300&w=300" alt="logo" width="90px">
+                <a href="homepage.php">
+                    <img src="https://store-images.s-microsoft.com/image/apps.51215.9007199266623456.05e3a154-d5ac-49d8-af6e-ab2f789dc26d.f443b25b-1668-48aa-8137-f8e5609aee45?mode=scale&q=90&h=300&w=300" alt="logo" width="90px">
+                </a>
             </div>
             <div class="vertical-bar"></div>
                 <h2>
@@ -106,7 +109,7 @@
                     if ($result->num_rows > 0) {
                         ?>
                             <div class="body-title">
-                                <h2>Corsi a cui puoi iscriverti/a:</h2>     
+                                <h2>Corsi a cui puoi iscriverti:</h2>     
                             </div>
                         <?php
                     }
