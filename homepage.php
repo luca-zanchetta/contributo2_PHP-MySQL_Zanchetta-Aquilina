@@ -126,7 +126,7 @@
                                     </div> 
                                     <div class="info-button">
                                             Info
-                                            <form action="fittizia.php" method="GET"> <!--Da implementare  visualizza-corso.php-->
+                                            <form action="visualizza-corso.php" method="GET"> <!--Da implementare  visualizza-corso.php-->
                                                 <input type="submit" name="iscriviti" value="" >
                                                 <input type="hidden" name="corso" value=" <?php echo $row["id"] ?>">
                                             </form>
