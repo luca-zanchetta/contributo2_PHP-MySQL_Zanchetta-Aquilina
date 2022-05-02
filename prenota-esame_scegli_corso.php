@@ -79,10 +79,10 @@
                 <a class="opzione" href="cancella_prenotazione.php">Cancella prenotazione</a>
             </h5>
             <h5>
-                <a class="opzione" href="visualizza_prenotazione.php">Visualizza prenotazioni</a>
+                <a class="opzione" href="visualizza_prenotazioni.php">Visualizza prenotazioni</a>
             </h5>
             <h5>
-                <a class="opzione" href="prenota-esame_scegli_corso.php">Indietro</a>
+                <a class="opzione" href="homepage.php">Indietro</a>
             </h5>
         </div>
         <div class="body">
@@ -121,12 +121,12 @@
                                         <?php echo $row["nome"]?>
                                     </div> 
                                     <div class="info-button">
-                                            prenota
-                                            <form action="prenotaAppello.php" method="GET"> <!--Da implementare visualizza-corso.php-->
+                                            PRENOTA
+                                            <form action="prenotaAppello.php" method="GET">
                                                 <input type="submit" name="iscriviti" value="" >
                                                 <input type="hidden" name="corso" value="<?php echo $row["id"] ?>">
-                                                <input type="hidden" name="nomeCorso" value="<?php echo row["nome"] ?>">
-                                                <input type="hidden" name="coloreCorso" value="<?php echo row["id_colore"] ?>">
+                                                <input type="hidden" name="nomeCorso" value="<?php echo $row["nome"] ?>">
+                                                <input type="hidden" name="coloreCorso" value="<?php echo $row["id_colore"] ?>">
                                             </form>
                                     </div>  
                                 </div>                                     

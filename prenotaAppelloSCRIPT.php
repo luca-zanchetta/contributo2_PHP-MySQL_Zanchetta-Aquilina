@@ -30,7 +30,7 @@
     //effettuiamo la prenotazione dell'appello selezionato
     $id_appello = $_GET['appello'];
     try {
-        $query_prenota_appello = "INSERT INTO prenotazione_appello VALUES (\'{$_SESSION['matricola']}\', \'{$id_appello}\', current_date())";
+        $query_prenota_appello = "INSERT INTO prenotazione_appello VALUES (\"{$_SESSION['matricola']}\", \"{$_GET['appello']}\", current_date())";
 
         if($mysqliConnection->query($query_prenota_appello) == TRUE) {
             ?>
@@ -117,9 +117,10 @@
             <?php
         }
         else
-            echo "error!";
+            echo "Errore nella query di insert su prenotazione appello!";
     }
     catch(mysqli_sql_exception $e){
-        echo "error!";
+        echo "Exception nella query di insert su prenotazione appello!";
+        printf($e);
     }
 ?>

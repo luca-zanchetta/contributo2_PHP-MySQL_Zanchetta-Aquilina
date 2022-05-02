@@ -61,7 +61,7 @@
                 </h2>
         </div>
         <div class="nav-central">
-            <form action="visualizza-iscrizione.php" method="GET">
+            <form action="visualizza-prenotazioni.php" method="GET">
                 <div class="nav-logo">
                     <input type="submit" name="ricerca" value="">
                     <img src="search.png" alt="err" width="20px" style="display: inline-flex;">
@@ -79,7 +79,7 @@
                 <a class="opzione" href="cancella_prenotazione.php">Cancella prenotazione</a>
             </h5>
             <h5>
-                <a class="opzione" href="visualizza_prenotazione.php">Visualizza prenotazioni</a>
+                <a class="opzione" href="visualizza_prenotazioni.php">Visualizza prenotazioni</a>
             </h5>
             <h5>
                 <a class="opzione" href="prenota-esame_scegli_corso.php">Indietro</a>
@@ -89,20 +89,25 @@
             <?php
                 //controlliamo se la pagina è stata lanciata da se stessa tramite la form di ricerca
                 if(!isset($_GET['filtro']) || $_GET['filtro'] == ''){
-                    $query_visualizza_iscrizioni = "SELECT p.*,c*
-                    FROM prenotazione_appello p
-                    WHERE p.id_studente = \"{$_SESSION['matricola']}\"";
+                    $query_visualizza_iscrizioni = "SELECT *
+                    FROM prenotazione_appello p, appello a, corso c
+                    WHERE p.id_studente = \"{$_SESSION['matricola']}\"
+                    AND p.id_appello = a.codice
+                    AND a.id_corso = c.id";
                 }else {
-                    $query_visualizza_iscrizioni = "SELECT p.*,c*
-                    FROM prenotazione_appello p,corso c,appello a
-                    WHERE a.id_corso = c.id AND a.id = p.id_appello AND p.id_studente =\"".$_SESSION['matricola']."\" AND c.nome LIKE\"".$_GET['filtro']."%\"";
+                    $query_visualizza_iscrizioni = "SELECT p.*, c.*
+                    FROM prenotazione_appello p, corso c, appello a
+                    WHERE a.id_corso = c.id 
+                    AND a.codice = p.id_appello 
+                    AND p.id_studente =\"".$_SESSION['matricola']."\" 
+                    AND c.nome LIKE\"".$_GET['filtro']."%\"";
                 }    
                 try{
                     $result = $mysqliConnection->query($query_visualizza_iscrizioni);
                     if ($result->num_rows > 0) {
                         ?>
                             <div class="body-title">
-                                <h2>Seleziona appello:</h2>     
+                                <h2>Appelli prenotati:</h2>     
                             </div>
                         <?php
                     }

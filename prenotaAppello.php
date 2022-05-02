@@ -127,7 +127,7 @@
                                             PRENOTA
                                             <form action="prenotaAppelloSCRIPT.php" method="GET">
                                                 <input type="submit" name="prenota" value="" >
-                                                <input type="hidden" name="appello" value=" <?php echo $row["id_appello"] ?>">
+                                                <input type="hidden" name="appello" value="<?php echo $row['codice']; ?>">
                                             </form>
                                     </div>  
                                 </div>                                   
