@@ -3,19 +3,10 @@ require_once("install.php");
 ini_set('display_errors', 0);
 
 if(isset($_POST['invio']) && !($_POST['matricola'] == "" || $_POST['password'] == "")) {
-    $host = "localhost";
-    $mysql_user = "admin";
-    $mysql_pwd = "admin";
-    $db_name = "infostud";
-
-    $mysqliConnection = new mysqli($host, $mysql_user, $mysql_pwd, $db_name);
-    if (mysqli_connect_errno()) {
-        printf("\nERRORE: Connessione al server non riuscita.\n%s\n", mysqli_connect_error());
-        exit();
-    }
+    // Collegamento al db
+    require_once("connection.php");
 
     /* VERIFICA LOGIN */
-
     $sql_verifica_matricola = "SELECT matricola
     FROM studente
     WHERE matricola = \"{$_POST['matricola']}\"
@@ -25,6 +16,7 @@ if(isset($_POST['invio']) && !($_POST['matricola'] == "" || $_POST['password'] =
         exit();
     }
     $matricola = mysqli_fetch_array($resultQ);
+
 
     global $verifica_presenza;
     if($matricola) {    # Lo studente è presente nel db
@@ -57,6 +49,8 @@ if(isset($_POST['invio']) && !($_POST['matricola'] == "" || $_POST['password'] =
     //Crittografia della password
     $pass_enc = openssl_encrypt($password, $met_enc, $key_enc, 0, $iv);
 
+
+    
     $sql_get_students = "SELECT * 
     FROM studente 
     WHERE matricola = \"{$_POST['matricola']}\" 

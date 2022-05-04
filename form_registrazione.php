@@ -2,18 +2,8 @@
 if(isset($_POST['matricola']) && isset($_POST['nome']) && isset($_POST['cognome']) && isset($_POST['pwd'])) {
     mysqli_report(MYSQLI_REPORT_ALL); // Per la gestione delle eccezioni dovute a molteplici insert successive ad ogni installazione del db
 
-    $host = "localhost";
-    $mysql_user = "admin";
-    $mysql_pwd = "admin";
-    $db_name = "infostud";
-
-    // Connessione al server
-
-    $mysqliConnection = new mysqli($host, $mysql_user, $mysql_pwd, $db_name);
-    if (mysqli_connect_errno()) {
-        printf("\nERRORE: Connessione al server non riuscita.\n%s\n", mysqli_connect_error());
-        exit();
-    }
+    // Collegamento al db
+    require_once("connection.php");
 
 
     /* AGGIUNTA CRIPTAGGIO PASSWORD */

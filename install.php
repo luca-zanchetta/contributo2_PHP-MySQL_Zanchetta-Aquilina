@@ -12,39 +12,22 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 
 mysqli_report(MYSQLI_REPORT_ALL); // Per la gestione delle eccezioni dovute a molteplici insert successive ad ogni installazione del db
 
-$host = "localhost";
-$mysql_user = "admin";
-$mysql_pwd = "admin";
-$db_name = "infostud";
 
 // Connessione al server
+require_once("connectionServer.php");
 
-$mysqliConnection = new mysqli($host, $mysql_user, $mysql_pwd);
-if (mysqli_connect_errno()) {
-    printf("\nERRORE: Connessione al server non riuscita.\n%s\n", mysqli_connect_error());
-    exit();
-}
 
 // Creazione del db (eventuale)
-
 $queryCreazioneDatabase = "CREATE DATABASE IF NOT EXISTS $db_name";
-if ($resultQ = mysqli_query($mysqliConnection, $queryCreazioneDatabase)) {
-    //printf("\nDatabase creato con successo!\n");
-}
-else {
+if (!$resultQ = mysqli_query($mysqliConnection, $queryCreazioneDatabase)) {
     printf("\nERRORE: Creazione del database non riuscita.\n");
     exit();
 }
-
 $mysqliConnection->close();
 
-// Collegamento al db
 
-$mysqliConnection = new mysqli($host, $mysql_user, $mysql_pwd, $db_name);
-if (mysqli_errno($mysqliConnection)) {
-    printf("\nERRORE: Connessione al db non riuscita.\n%s\n", mysqli_error($mysqliConnection));
-    exit();
-}
+// Collegamento al db
+require_once("connection.php");
 
 
 
