@@ -61,7 +61,7 @@
                 </h2>
         </div>
         <div class="nav-central">
-            <form action="visualizza-prenotazioni.php" method="GET">
+            <form action="visualizza_prenotazioni.php" method="GET">
                 <div class="nav-logo">
                     <input type="submit" name="ricerca" value="">
                     <img src="search.png" alt="err" width="20px" style="display: inline-flex;">
@@ -82,7 +82,7 @@
                 <a class="opzione" href="visualizza_prenotazioni.php">Visualizza prenotazioni</a>
             </h5>
             <h5>
-                <a class="opzione" href="prenota-esame_scegli_corso.php">Indietro</a>
+                <a class="opzione" href="homepage.php">Indietro</a>
             </h5>
         </div>
         <div class="body">
@@ -95,7 +95,7 @@
                     AND p.id_appello = a.codice
                     AND a.id_corso = c.id";
                 }else {
-                    $query_visualizza_iscrizioni = "SELECT p.*, c.*
+                    $query_visualizza_iscrizioni = "SELECT *
                     FROM prenotazione_appello p, corso c, appello a
                     WHERE a.id_corso = c.id 
                     AND a.codice = p.id_appello 
@@ -113,7 +113,7 @@
                     }
                 }
                 catch(mysqli_sql_exception $e){
-                    echo "error!";
+                    echo $e->getMessage();
                 }
             ?>
             <div class="container-esami">
@@ -123,27 +123,30 @@
                             ?>
                                 <div class="blocco-esame" style="background-color:<?php echo $row["id_colore"]?>">
                                     <div class="nome-esame" >
-                                        <?php echo $row["nome"]." ".$row["data_appello"]?>
-                                    </div> 
+                                        <?php echo $row["nome"]?>
+                                    </div>
+                                    <div style="display: flex;font-weight: bold;margin-top:0.5%;">
+                                        <?php echo $row["data_appello"]?>
+                                    </div>
                                 </div>                                     
                         <?php
                         }  
                     }
                     elseif($result->num_rows == 0 and !isset($_GET['filtro'])) {
                         ?>
-                            <form action="iscriviti.php" method="post">
+                            <form action="prenota-esame_scegli_corso.php" method="post">
                             <div class="zero-esami_central">
                                 <h2>Non risultano prenotazioni.</h2>
-                                <input class="button-iscrizione" type="submit" name="iscriviti" value="ISCRIVITI AD UN CORSO">
+                                <input class="button-iscrizione" type="submit" name="iscriviti" value="Prenota Appello">
                             </div>
                             </form>
                         <?php
                     }elseif($result->num_rows == 0 and isset($_GET['filtro'])) {
                         ?>
-                            <form action="homepage.php" method="post">
+                            <form action="prenota-esame_scegli_corso.php" method="post">
                             <div class="zero-esami_central">
-                                <h2>Non risultano prenotazioni a corso con quel nome.</h2>
-                                <input class="button-iscrizione" type="submit" name="home" value="TORNA ALLA HOME">
+                                <h2>Non risultano prenotazion.</h2>
+                                <input class="button-iscrizione" type="submit" name="home" value="Prenota Appello">
                             </div>
                             </form>
                         <?php

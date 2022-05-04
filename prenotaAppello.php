@@ -61,13 +61,13 @@
                     </a>
                 </h2>
         </div>
-        <div class="nav-central">
-            <form action="iscriviti.php" style="width: 100%;">
+        <div class="nav-central"  style="width:auto;">
+            <form action="prenotaAppello.php" style="width: 100%;">
                 <div class="nav-logo">
                     <input type="submit" name="ricerca" value="">
                     <img src="search.png" alt="err" width="20px" style="display: inline-flex;">
                 </div>   
-                <input type="text" name="filtro">
+                <input type="date" name="data" style="padding-right: 5%;">
             </form> 
         </div>
         <div class="nav-right">
@@ -76,30 +76,41 @@
     </div>
     <div class="central-block">
         <div class="sidebar">
-            <h5>
-                <a class="opzione" href="fittizia.php">Prenota Esame</a>
+        <h5>
+                <a class="opzione" href="cancella_prenotazione.php">Cancella prenotazione</a>
             </h5>
             <h5>
-                <a class="opzione" href="iscriviti.php">Iscriviti a un corso</a>
+                <a class="opzione" href="visualizza_prenotazioni.php">Visualizza prenotazioni</a>
             </h5>
             <h5>
-                <a class="opzione" href="homepage.php">Visualizza corsi</a>
-            </h5>
-            <h5>
-                <a class="opzione" href="cancellaIscrizione.php">Cancella iscrizione</a>
-            </h5>
+                <a class="opzione" href="prenota-esame_scegli_corso.php">Indietro</a>
         </div>
         <div class="body">
             <?php
-                $query_prenotazioni_possibili = "SELECT *
-                FROM appello a
-                WHERE a.id_corso = {$_GET['corso']}
-                AND a.scadenza >= current_date()
-                AND a.codice NOT IN (
-                    SELECT id_appello
-                    FROM prenotazione_appello
-                    WHERE id_studente = {$_SESSION['matricola']}
-                )";          
+                if(!isset($_GET['data'])){ 
+                    $query_prenotazioni_possibili = "SELECT *
+                    FROM appello a
+                    WHERE a.id_corso = {$_GET['corso']}
+                    AND a.scadenza >= current_date()
+                    AND a.codice NOT IN (
+                        SELECT id_appello
+                        FROM prenotazione_appello
+                        WHERE id_studente = {$_SESSION['matricola']}
+                    )"; 
+                }else {
+                    //$filtro = new DateTime($_GET['data']);
+                    //$filtro = $mysqliConnection->real_escape_string($filtro->format('Y-m-d'));
+                    echo $filtro;
+                    $query_prenotazioni_possibili = "SELECT *
+                    FROM appello a
+                    WHERE a.id_corso = {$_GET['corso']}
+                    AND a.scadenza >= current_date()
+                    AND date(a.data_appello) >= date(\'{$filtro}\')
+                    AND a.codice NOT IN (
+                        SELECT id_appello
+                        FROM prenotazione_appello
+                        WHERE id_studente = {$_SESSION['matricola']})"; 
+                }         
                 try {
                     $result = $mysqliConnection->query($query_prenotazioni_possibili);
                     if ($result->num_rows > 0) {
@@ -111,7 +122,7 @@
                     }
                 }
                 catch(mysqli_sql_exception $e){
-                    echo "error!";
+                    echo $e->getMessage();
                 }
             ?>
             <div class="container-esami">

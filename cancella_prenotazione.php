@@ -61,7 +61,7 @@
                 </h2>
         </div>
         <div class="nav-central">
-            <form action="cancella_iscrizione.php" method="GET">
+            <form action="cancella_prenotazione.php" method="GET">
                 <div class="nav-logo">
                     <input type="submit" name="ricerca" value="">
                     <img src="search.png" alt="err" width="20px" style="display: inline-flex;">
@@ -79,7 +79,7 @@
                 <a class="opzione" href="cancella_prenotazione.php">Cancella prenotazione</a>
             </h5>
             <h5>
-                <a class="opzione" href="visualizza_prenotazione.php">Visualizza prenotazioni</a>
+                <a class="opzione" href="visualizza_prenotazioni.php">Visualizza prenotazioni</a>
             </h5>
             <h5>
                 <a class="opzione" href="prenota-esame_scegli_corso.php">Indietro</a>
@@ -89,13 +89,13 @@
             <?php
                 //controlliamo se la pagina è stata lanciata da se stessa tramite la form di ricerca
                 if(!isset($_GET['filtro']) || $_GET['filtro'] == ''){
-                    $query_visualizza_iscrizioni = "SELECT p.*,c*
-                    FROM prenotazione_appello p
-                    WHERE p.id_studente = \"{$_SESSION['matricola']}\"";
-                }else {
-                    $query_visualizza_iscrizioni = "SELECT p.*,c*
+                    $query_visualizza_iscrizioni = "SELECT *
                     FROM prenotazione_appello p,corso c,appello a
-                    WHERE a.id_corso = c.id AND a.id = p.id_appello AND p.id_studente =\"".$_SESSION['matricola']."\" AND c.nome LIKE\"".$_GET['filtro']."%\"";
+                    WHERE a.id_corso = c.id AND a.codice = p.id_appello AND p.id_studente = \"{$_SESSION['matricola']}\"";
+                }else {
+                    $query_visualizza_iscrizioni = "SELECT *
+                    FROM prenotazione_appello p,corso c,appello a
+                    WHERE a.id_corso = c.id AND a.codice = p.id_appello AND p.id_studente =\"".$_SESSION['matricola']."\" AND c.nome LIKE\"".$_GET['filtro']."%\"";
                 }    
                 try{
                     $result = $mysqliConnection->query($query_visualizza_iscrizioni);
@@ -122,9 +122,9 @@
                                     </div> 
                                     <div class="info-button">
                                             cancella
-                                            <form action="cancellazione_prenotazione.php" method="GET"> <!--Da implementare visualizza-corso.php-->
-                                                <input type="submit" name="iscriviti" value="" >
-                                                <input type="hidden" name="corso" value="<?php echo $row["id"] ?>">
+                                            <form action="cancellazione_prenotazione.php" method="POST"> 
+                                                <input type="submit" name="iscriviti" value="">
+                                                <input type="hidden" name="appello" value="<?php echo $row["id_appello"]?>">
                                             </form>
                                     </div>  
                                 </div>                                     
@@ -133,7 +133,7 @@
                     }
                     elseif($result->num_rows == 0 and !isset($_GET['filtro'])) {
                         ?>
-                            <form action="iscriviti.php" method="post">
+                            <form action="prenota-esame_scegli_corso.php" method="post">
                             <div class="zero-esami_central">
                                 <h2>Non risultano prenotazioni.</h2>
                                 <input class="button-iscrizione" type="submit" name="iscriviti" value="ISCRIVITI AD UN CORSO">
@@ -142,10 +142,10 @@
                         <?php
                     }elseif($result->num_rows == 0 and isset($_GET['filtro'])) {
                         ?>
-                            <form action="homepage.php" method="post">
+                            <form action="prenota-esame_scegli_corso.php" method="post">
                             <div class="zero-esami_central">
                                 <h2>Non risultano prenotazioni a corso con quel nome.</h2>
-                                <input class="button-iscrizione" type="submit" name="home" value="TORNA ALLA HOME">
+                                <input class="button-iscrizione" type="submit" name="home" value="Prenota Appello">
                             </div>
                             </form>
                         <?php

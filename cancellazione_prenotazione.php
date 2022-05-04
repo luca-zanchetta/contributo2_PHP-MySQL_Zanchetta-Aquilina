@@ -27,84 +27,97 @@
         }
     }else include("login.php");
 
-    //effettuiamo l'iscrizione all'esame
-    $nome_esame = $_GET['corso'];
-    $query_iscrizione_corso = "INSERT INTO iscrizione VALUES (\"{$_SESSION['matricola']}\",\"{$_GET['corso']}\", current_date())";
+    //effettuiamo la prenotazione dell'appello selezionato
+    $id_appello = $_POST['appello'];
+    try {
+        $query_prenota_appello = "DELETE FROM prenotazione_appello WHERE id_studente=\"{$_SESSION['matricola']}\" AND id_appello=\"{$_POST['appello']}\"";
 
-    if($mysqliConnection->query($query_iscrizione_corso) == TRUE) {
-        ?>
-            <?xml version="1.0" encoding="UTF-8"?>
-            <!DOCTYPE html
-            PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-            "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        if($mysqliConnection->query($query_prenota_appello) == TRUE) {
+            ?>
+                <?xml version="1.0" encoding="UTF-8"?>
+                <!DOCTYPE html
+                PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
-            <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+                <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
-            <head>
-                <title>Successo!</title>
-                <link rel="stylesheet" href="stile-base.css">
-            </head>
+                <head>
+                    <title>Successo!</title>
+                    <link rel="stylesheet" href="stile-base.css">
+                </head>
 
-            <body>
-            <div class="header">
-                <div class="nav-left">
-                    <div class="nav-logo">
-                        <a href="homepage.php">
-                            <img src="https://store-images.s-microsoft.com/image/apps.51215.9007199266623456.05e3a154-d5ac-49d8-af6e-ab2f789dc26d.f443b25b-1668-48aa-8137-f8e5609aee45?mode=scale&q=90&h=300&w=300" alt="logo" width="90px">
-                        </a>
-                    </div>
-                    <div class="vertical-bar"></div>
-                        <h2>
-                            <form action="">
-                                <input type="button">
-                            </form>
-                            Infostud
-                        </h2>
-                    <div class="vertical-bar"></div>
-                        <h2>
-                            <a class="logout" href="logout.php">
-                                logout
-                            </a>
-                        </h2>
-                </div>
-                <div class="nav-central">
-                    <form action="cancella_iscrizione.php" method="GET">
+                <body>
+                <div class="header">
+                    <div class="nav-left">
                         <div class="nav-logo">
-                            <input type="submit" name="ricerca" value="">
-                            <img src="search.png" alt="err" width="20px" style="display: inline-flex;">
-                        </div>    
-                            <input type="text" name="filtro">              
-                    </form>
-                </div>
-                <div class="body">
-                    <div class="box-avviso">
-                        <h1>Cancellazione avvenuta con successo!</h1>
+                            <a href="homepage.php">
+                                <img src="https://store-images.s-microsoft.com/image/apps.51215.9007199266623456.05e3a154-d5ac-49d8-af6e-ab2f789dc26d.f443b25b-1668-48aa-8137-f8e5609aee45?mode=scale&q=90&h=300&w=300" alt="logo" width="90px">
+                            </a>
+                        </div>
+                        <div class="vertical-bar"></div>
+                            <h2>
+                                Infostud
+                            </h2>
                     </div>
-                    <div style="text-align: center;">
-                        <?php
-                            session_start();
-                            if(isset($_SESSION['matricola'])) {
-                                ?>
-                                    <form action="homepage.php">
-                                    <input class="bottoneHome" type="submit" name="invio" value="Torna alla home">
+                    <div class="nav-central">
+                        <form action="cancella_prenotazione.php" method="GET">
+                            <div class="nav-logo">
+                                <input type="submit" name="ricerca" value="">
+                                <img src="search.png" alt="err" width="20px" style="display: inline-flex;">
+                            </div>    
+                                <input type="text" name="filtro">              
+                        </form>
+                    </div>
+                    <div class="nav-right">
+                        <img src="account.png" alt="dasdas" width="100px">
+                    </div>
+                </div>
+                <div class="central-block">
+                    <div class="sidebar">
+                        <h5>
+                            <a class="opzione" href="prenota-esame_scegli_corso.php">Prenota Esame</a>
+                        </h5>
+                        <h5>
+                            <a class="opzione" href="iscriviti.php">Iscriviti a un corso</a>
+                        </h5>
+                        <h5>
+                            <a class="opzione" href="cancellaIscrizione.php">Cancella iscrizione</a>
+                        </h5>
+                    </div>
+                    <div class="body">
+                        <div class="box-avviso">
+                            <h1>Cancellazione avvenuta con successo!</h1>
+                        </div>
+                        <div style="text-align: center;">
+                            <?php
+                                session_start();
+                                if(isset($_SESSION['matricola'])) {
+                                    ?>
+                                        <form action="homepage.php">
+                                        <input class="bottoneHome" type="submit" name="invio" value="Torna alla home">
+                                        </form>
+                                    <?php
+                                }
+                                elseif(!isset($_SESSION['matricola'])) {
+                                    ?>
+                                    <form action="login.php">
+                                        <input class="bottoneHome" type="submit" name="invio" value="Torna alla home">
                                     </form>
-                                <?php
-                            }
-                            elseif(!isset($_SESSION['matricola'])) {
-                                ?>
-                                <form action="login.php">
-                                    <input class="bottoneHome" type="submit" name="invio" value="Torna alla home">
-                                </form>
-                                <?php
-                            }
-                        ?>
+                                    <?php
+                                }
+                            ?>
+                        </div>
                     </div>
                 </div>
-            </div>
-            </body>
-            </html>
-        <?php
+                </body>
+                </html>
+            <?php
+        }
+        else
+            echo "Errore nella query di insert su prenotazione appello!";
     }
-    else
-        echo "error!";
+    catch(mysqli_sql_exception $e){
+        echo "Exception nella query di insert su prenotazione appello!";
+        printf($e);
+    }
 ?>

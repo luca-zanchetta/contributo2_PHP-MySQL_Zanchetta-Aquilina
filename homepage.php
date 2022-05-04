@@ -82,9 +82,6 @@
                 <a class="opzione" href="iscriviti.php">Iscriviti a un corso</a>
             </h5>
             <h5>
-                <a class="opzione" href="homepage.php">Visualizza corsi</a>
-            </h5>
-            <h5>
                 <a class="opzione" href="cancellaIscrizione.php">Cancella iscrizione</a>
             </h5>
         </div>

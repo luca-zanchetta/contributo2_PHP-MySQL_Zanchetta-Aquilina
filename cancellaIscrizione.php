@@ -60,7 +60,7 @@
                 </h2>
         </div>
         <div class="nav-central">
-            <form action="homepage.php" method="GET">
+            <form action="cancellaIscrizione.php" method="GET">
                 <div class="nav-logo">
                     <input type="submit" name="ricerca" value="">
                     <img src="search.png" alt="err" width="20px" style="display: inline-flex;">
@@ -75,13 +75,10 @@
     <div class="central-block">
         <div class="sidebar">
             <h5>
-                <a class="opzione" href="fittizia.php">Prenota Esame</a>
+                <a class="opzione" href="prenota-esame_scegli_corso.php">Prenota Esame</a>
             </h5>
             <h5>
                 <a class="opzione" href="iscriviti.php">Iscriviti a un corso</a>
-            </h5>
-            <h5>
-                <a class="opzione" href="homepage.php">Visualizza corsi</a>
             </h5>
             <h5>
                 <a class="opzione" href="cancellaIscrizione.php">Cancella iscrizione</a>

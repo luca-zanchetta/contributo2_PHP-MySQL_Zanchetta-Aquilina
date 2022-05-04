@@ -77,13 +77,10 @@
     <div class="central-block">
         <div class="sidebar">
             <h5>
-                <a class="opzione" href="fittizia.php">Prenota Esame</a>
+                <a class="opzione" href="prenota-esame_scegli_corso.php">Prenota Esame</a>
             </h5>
             <h5>
                 <a class="opzione" href="iscriviti.php">Iscriviti a un corso</a>
-            </h5>
-            <h5>
-                <a class="opzione" href="homepage.php">Visualizza corsi</a>
             </h5>
             <h5>
                 <a class="opzione" href="cancellaIscrizione.php">Cancella iscrizione</a>
