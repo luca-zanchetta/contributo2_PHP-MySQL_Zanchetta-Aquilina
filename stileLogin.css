@@ -235,6 +235,38 @@ h1, h2, h3, h4 {
     border-bottom-left-radius: 4%;
     border-bottom-right-radius: 4%;
 }
+.box3 {
+    display: flexbox;
+    position: relative;
+    border-width: 3px;
+	border-style: ridge;     
+    border-color: firebrick;
+    background-color: gainsboro;
+	margin-top: -30em;
+    margin-bottom: 2%;
+    margin-left: 5%;
+    margin-right: 73%;
+    border-top-left-radius: 4%;
+    border-top-right-radius: 4%;
+    border-bottom-left-radius: 4%;
+    border-bottom-right-radius: 4%;
+}
+.box4 {
+    display: flexbox;
+    position: relative;
+    border-width: 3px;
+	border-style: ridge;     
+    border-color: firebrick;
+    background-color: gainsboro;
+	margin-top: -10em;
+    margin-bottom: 2%;
+    margin-left: 70%;
+    margin-right: 7%;
+    border-top-left-radius: 4%;
+    border-top-right-radius: 4%;
+    border-bottom-left-radius: 4%;
+    border-bottom-right-radius: 4%;
+}
 .boxRegistrazione {
     display: flexbpx;
     position: relative;
@@ -302,5 +334,4 @@ h2.error {
     font-size: 200%;
     font-weight: bold;
     color: blue;
-    margin-top: 7em;
 }

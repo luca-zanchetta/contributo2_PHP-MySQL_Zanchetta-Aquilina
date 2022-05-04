@@ -16,6 +16,27 @@ if(isset($_POST['invio']) && !($_POST['matricola'] == "" || $_POST['password'] =
 
     /* VERIFICA LOGIN */
 
+    $sql_verifica_matricola = "SELECT matricola
+    FROM studente
+    WHERE matricola = \"{$_POST['matricola']}\"
+    ";
+    if(!$resultQ = mysqli_query($mysqliConnection, $sql_verifica_matricola)) {
+        printf("\nERRORE: La query di recupero matricola non funziona correttamente.\n");
+        exit();
+    }
+    $matricola = mysqli_fetch_array($resultQ);
+
+    global $verifica_presenza;
+    if($matricola) {    # Lo studente è presente nel db
+        $verifica_presenza = 1;
+    }
+    elseif(!$matricola) {   # Lo studente NON è presente nel db
+        $verifica_presenza = 0;
+    }
+
+
+
+
     $sql_get_password = "SELECT password
     FROM studente
     WHERE matricola = \"{$_POST['matricola']}\"
@@ -24,7 +45,7 @@ if(isset($_POST['invio']) && !($_POST['matricola'] == "" || $_POST['password'] =
         printf("\nERRORE: La query di recupero password non funziona correttamente.\n");
         exit();
     }
-    $pass_enc = mysqli_fetch_array($resultQ); // Password criptata
+    $pass_enc = mysqli_fetch_array($resultQ); // Password criptata; se fallisce, l'utente non è registrato.
 
     /* Fonte: https://rosariociaglia.altervista.org/crittografia-e-decrittografia-con-php-come-criptare-e-decriptare-stringhe/ */
     
@@ -33,7 +54,7 @@ if(isset($_POST['invio']) && !($_POST['matricola'] == "" || $_POST['password'] =
     $met_enc = 'aes256'; //metodo per la crittografia: aes128, aes192, aes256, blowfish, cast-cbc
     $iv = 'ma1R0ikDD56_hG12'; //una stringa random con 16 caratteri
 
-    //Crittografare la password
+    //Crittografia della password
     $pass_enc = openssl_encrypt($password, $met_enc, $key_enc, 0, $iv);
 
     $sql_get_students = "SELECT * 
@@ -46,7 +67,7 @@ if(isset($_POST['invio']) && !($_POST['matricola'] == "" || $_POST['password'] =
         exit();
     }
 
-
+    global $utente;
     $utente = mysqli_fetch_array($resultQ);
     if($utente) { /* Login avvenuto correttamente */
         session_start();
@@ -54,54 +75,7 @@ if(isset($_POST['invio']) && !($_POST['matricola'] == "" || $_POST['password'] =
         header('Location: homepage.php');
         exit();
     }
-    elseif(!$utente) { /* Qualcosa è andato storto */
-        echo "
-        <?xml version=\"1.0\" encoding=\"UTF-8\"?>
-        <!DOCTYPE html
-        PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\"
-        \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">
-
-        <html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\">
-
-        <head>
-            <title>ERRORE :(</title>
-            <link rel=\"stylesheet\" href=\"stileLogin.css\">
-        </head>
-
-        <body>
-        <form action=\"login.php\">
-        <div class=\"header\">
-            <div class=\"nav-left\">
-                <div class=\"nav-logo\">
-                    <a href=\"homepage.php\">
-                        <img src=\"https://store-images.s-microsoft.com/image/apps.51215.9007199266623456.05e3a154-d5ac-49d8-af6e-ab2f789dc26d.f443b25b-1668-48aa-8137-f8e5609aee45?mode=scale&q=90&h=300&w=300\" alt=\"logo\" width=\"90px\">
-                    </a>
-                </div>
-                <div class=\"vertical-bar\"></div>
-                    <h2>
-                        Infostud
-                    </h2>
-            </div>
-            <div class=\"nav-right\">
-                <img src=\"https://w7.pngwing.com/pngs/73/580/png-transparent-arturia-business-logo-musical-instruments-individual-retirement-account-logo-business-sound.png\" alt=\"dasdas\" width=\"100px\">
-            </div>
-        </div>
-        <div class=\"central-block\">
-            <div class=\"body\">
-                <div class=\"box\">
-                    <h1>ERRORE: Studente NON registrato.</h1>
-                </div>
-                <div>
-                    <input class=\"bottoneHome\" type=\"submit\" name=\"invio\" value=\"Torna alla home\">
-                </div>
-            </div>
-        </div>
-
-        </form>
-        </body>
-        </html>
-        ";
-    }
+    /* L'else è stato sviluppato nel codice XHTML */
 }
 
 ?>
@@ -115,7 +89,6 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 
 <head>
     <title>Login - Infostud</title>
-    
     <link rel="stylesheet" href="stileLogin.css">
 </head>
 
@@ -145,7 +118,16 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
         <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
         <div class="box">
             <h2>Matricola:</h2>
-            <input class="textField" type="text" name="matricola">
+            <?php
+                if(isset($_POST['matricola'])) {
+                    echo "<input class=\"textField\" type=\"text\" name=\"matricola\" value=\"{$_POST['matricola']}\">";
+                }
+                elseif(!isset($_POST['matricola'])) {
+                    ?>
+                    <input class="textField" type="text" name="matricola">
+                    <?php
+                }
+            ?>
             <br />
             <h2>Password:</h2>
             <input class="textField" type="password" name="password">
@@ -156,13 +138,28 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
         </form>
         <div class="box2">
             <h2>Non sei uno studente?</h2>
-            <form action="form_registrazione.html">
-                <input class="bottoni2" type="submit" name="invio" value="REGISTRATI">
+            <form action="form_registrazione.php">
+                <input class="bottoni2" type="submit" name="reg" value="REGISTRATI">
             </form>
         </div>
         <?php
-            if(isset($_POST['invio']) && ($_POST['matricola'] == "" || $_POST['password'] == "")) {
-                echo "<h2 class=\"error\">DATI MANCANTI! Riprovare.</h2> ";
+            if(isset($_POST['invio']) && ($_POST['matricola'] == "" || $_POST['password'] == "")) { // Manca qualche dato
+                echo "
+                    <div class=\"box4\">
+                        <h2 class=\"error\">DATI MANCANTI! Riprovare.</h2>
+                    </div>";
+            }
+            elseif(isset($_POST['invio']) && (!$utente) && ($verifica_presenza == 1) && !(($_POST['matricola'] == "" || $_POST['password'] == ""))) { // Lo studente non è registrato
+                echo "
+                    <div class=\"box4\">
+                        <h2 class=\"error\">PASSWORD ERRATA! Riprovare.</h2>
+                    </div>";
+            }            
+            elseif(isset($_POST['invio']) && (!$utente) && ($verifica_presenza == 0) && !(($_POST['matricola'] == "" || $_POST['password'] == ""))) { // Lo studente non è registrato
+                echo "
+                    <div class=\"box4\">
+                        <h2 class=\"error\">STUDENTE NON REGISTRATO! Riprovare.</h2>
+                    </div>";
             }
         ?>
     </div>
