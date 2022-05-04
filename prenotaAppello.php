@@ -62,9 +62,11 @@
                 </h2>
         </div>
         <div class="nav-central"  style="width:auto;">
-            <form action="prenotaAppello.php" style="width: 100%;">
+            <form action="prenotaAppello.php" style="width: 100%;" method="GET">
                 <div class="nav-logo">
                     <input type="submit" name="ricerca" value="">
+                    <input type="hidden" name="corso" value=<?php echo"\"{$_GET['corso']}\"";?>>
+                    <input type="hidden" name="coloreCorso" value=<?php echo"\"{$_GET['coloreCorso']}\"";?>>
                     <img src="search.png" alt="err" width="20px" style="display: inline-flex;">
                 </div>   
                 <input type="date" name="data" style="padding-right: 5%;">
@@ -98,18 +100,19 @@
                         WHERE id_studente = {$_SESSION['matricola']}
                     )"; 
                 }else {
-                    //$filtro = new DateTime($_GET['data']);
-                    //$filtro = $mysqliConnection->real_escape_string($filtro->format('Y-m-d'));
-                    echo $filtro;
+                    $filtro = new DateTime($_GET['data']);
+                    $filtro = $mysqliConnection->real_escape_string($filtro->format('Y-m-d'));
+                    #echo "$filtro<br/>";
                     $query_prenotazioni_possibili = "SELECT *
-                    FROM appello a
-                    WHERE a.id_corso = {$_GET['corso']}
-                    AND a.scadenza >= current_date()
-                    AND date(a.data_appello) >= date(\'{$filtro}\')
-                    AND a.codice NOT IN (
+                    FROM appello 
+                    WHERE id_corso = {$_GET['corso']}
+                    AND DATEDIFF(DATE(scadenza), CURRENT_DATE) > 0
+                    AND DATE(data_appello) LIKE '{$filtro}'
+                    AND codice NOT IN (
                         SELECT id_appello
                         FROM prenotazione_appello
-                        WHERE id_studente = {$_SESSION['matricola']})"; 
+                        WHERE id_studente = '{$_SESSION['matricola']}'
+                    )";
                 }         
                 try {
                     $result = $mysqliConnection->query($query_prenotazioni_possibili);
