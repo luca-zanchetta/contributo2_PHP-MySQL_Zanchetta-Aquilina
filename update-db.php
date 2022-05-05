@@ -10,7 +10,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 
 <?php
     // Collegamento al db
-    require_once("connection.php");
+    include("connection.php");
 
     //modifica del db
     $alterTbl = "ALTER TABLE corso 

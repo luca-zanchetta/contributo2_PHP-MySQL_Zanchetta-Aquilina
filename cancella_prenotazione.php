@@ -1,6 +1,6 @@
 <?php
     ini_set('display_errors', 0);
-    require_once("connection.php");
+    include("connection.php");
 
     
     session_start();

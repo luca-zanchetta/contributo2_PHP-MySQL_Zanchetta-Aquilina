@@ -3,7 +3,7 @@ if(isset($_POST['matricola']) && isset($_POST['nome']) && isset($_POST['cognome'
     mysqli_report(MYSQLI_REPORT_ALL); // Per la gestione delle eccezioni dovute a molteplici insert successive ad ogni installazione del db
 
     // Collegamento al db
-    require_once("connection.php");
+    include("connection.php");
 
 
     /* AGGIUNTA CRIPTAGGIO PASSWORD */

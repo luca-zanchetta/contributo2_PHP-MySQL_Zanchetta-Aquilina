@@ -1,10 +1,10 @@
 <?php
-require_once("install.php");
+include("install.php");
 ini_set('display_errors', 0);
 
 if(isset($_POST['invio']) && !($_POST['matricola'] == "" || $_POST['password'] == "")) {
     // Collegamento al db
-    require_once("connection.php");
+    include("connection.php");
 
     /* VERIFICA LOGIN */
     $sql_verifica_matricola = "SELECT matricola

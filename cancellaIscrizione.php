@@ -1,6 +1,6 @@
 <?php
     // Collegamento al db
-    require_once("connection.php");
+   include("connection.php");
 
     
     session_start();

@@ -2,7 +2,7 @@
     ini_set('display_errors', 0);
     
     // Collegamento al db
-    require_once("connection.php");
+    include("connection.php");
 
     
     session_start();

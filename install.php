@@ -14,8 +14,9 @@ mysqli_report(MYSQLI_REPORT_ALL); // Per la gestione delle eccezioni dovute a mo
 
 
 // Connessione al server
-require_once("connectionServer.php");
+include("connectionServer.php");
 
+$db_name = "infostud";
 
 // Creazione del db (eventuale)
 $queryCreazioneDatabase = "CREATE DATABASE IF NOT EXISTS $db_name";
@@ -27,7 +28,7 @@ $mysqliConnection->close();
 
 
 // Collegamento al db
-require_once("connection.php");
+include("connection.php");
 
 
 
