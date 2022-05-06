@@ -51,16 +51,20 @@ if(isset($_POST['matricola']) && isset($_POST['nome']) && isset($_POST['cognome'
                             </h2>
                     </div>
                     <div class=\"nav-right\">
-                        <img src=\"account.png\" alt=\"dasdas\" width=\"100px\">
+                        <img src=\"https://w7.pngwing.com/pngs/73/580/png-transparent-arturia-business-logo-musical-instruments-individual-retirement-account-logo-business-sound.png\" alt=\"dasdas\" width=\"100px\">
                     </div>
                 </div>
                 <div class=\"central-block\">
-                    <div class=\"body\">
-                        <div class=\"box\">
-                            <h1>Inserimento avvenuto con successo!</h1>
-                        </div>
-                        <div>
-                            <input class=\"bottoneHome\" type=\"submit\" name=\"invio\" value=\"Torna alla home\">
+                    <div class=\"scroll-root\">
+                        <div class=\"scroll-area\"> 
+                            <div class=\"body\">
+                                <div class=\"box\">
+                                    <h1>Inserimento avvenuto con successo!</h1>
+                                </div>
+                                <div>
+                                    <input class=\"bottoneHome\" type=\"submit\" name=\"invio\" value=\"Torna alla home\">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -99,7 +103,7 @@ if(isset($_POST['matricola']) && isset($_POST['nome']) && isset($_POST['cognome'
                             </h2>
                     </div>
                     <div class=\"nav-right\">
-                        <img src=\"account.png\" alt=\"dasdas\" width=\"100px\">
+                        <img src=\"https://w7.pngwing.com/pngs/73/580/png-transparent-arturia-business-logo-musical-instruments-individual-retirement-account-logo-business-sound.png\" alt=\"dasdas\" width=\"100px\">
                     </div>
                 </div>
                 <div class=\"central-block\">
@@ -148,7 +152,7 @@ if(isset($_POST['matricola']) && isset($_POST['nome']) && isset($_POST['cognome'
                             </h2>
                     </div>
                     <div class=\"nav-right\">
-                        <img src=\"account.png\" alt=\"dasdas\" width=\"100px\">
+                        <img src=\"https://w7.pngwing.com/pngs/73/580/png-transparent-arturia-business-logo-musical-instruments-individual-retirement-account-logo-business-sound.png\" alt=\"dasdas\" width=\"100px\">
                     </div>
                 </div>
                 <div class=\"central-block\">
@@ -192,7 +196,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     <div class="nav-left">
         <div class="nav-logo">
             <a href="homepage.php">
-                <img src="https://store-images.s-microsoft.com/image/apps.51215.9007199266623456.05e3a154-d5ac-49d8-af6e-ab2f789dc26d.f443b25b-1668-48aa-8137-f8e5609aee45?mode=scale&q=90&h=300&w=300" alt="logo" width="90px">
+                <img src="https://store-images.s-microsoft.com/image/apps.51215.9007199266623456.05e3a154-d5ac-49d8-af6e-ab2f789dc26d.f443b25b-1668-48aa-8137-f8e5609aee45?mode=scale&q=90&h=300&w=300" alt="logo" style="width:90px;">
             </a>
         </div>
         <div class="vertical-bar"></div>
@@ -201,64 +205,64 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
             </h2>
     </div>
     <div class="nav-right">
-        <img src="account.png" alt="dasdas" width="100px">
+        <img src="account.png" alt="dasdas" style="width: 90px;">
     </div>
 </div>
-<div class="central-block">
-    <div class="body">
+<div class="central-block"> 
+    <DIV class="body">
         <h2 class="title">REGISTRATI</h2>   
 
-        <form action="<?php $_SERVER['PHP_SELF']?>" method="post"> 
-        <div class="boxRegistrazione">
-            <h3>Matricola:</h3>
+            <form action="<?php $_SERVER['PHP_SELF']?>" method="post"> 
+            <div class="boxRegistrazione">
+                <h3>Matricola:</h3>
+                <?php
+                    if(isset($_POST['matricola'])) {
+                        echo "<input class=\"textField\" type=\"text\" name=\"matricola\" value=\"{$_POST['matricola']}\">";
+                    }
+                    elseif(!isset($_POST['matricola'])) {
+                        ?>
+                        <input class="textField" type="text" name="matricola">
+                        <?php
+                    }
+                ?>
+                <h3>Nome:</h3>
+                <?php
+                    if(isset($_POST['nome'])) {
+                        echo "<input class=\"textField\" type=\"text\" name=\"nome\" value=\"{$_POST['nome']}\">";
+                    }
+                    elseif(!isset($_POST['nome'])) {
+                        ?>
+                        <input class="textField" type="text" name="nome">
+                        <?php
+                    }
+                ?>
+                <h3>Cognome:</h3>
+                <?php
+                    if(isset($_POST['cognome'])) {
+                        echo "<input class=\"textField\" type=\"text\" name=\"cognome\" value=\"{$_POST['cognome']}\">";
+                    }
+                    elseif(!isset($_POST['cognome'])) {
+                        ?>
+                        <input class="textField" type="text" name="cognome">
+                        <?php
+                    }
+                ?>
+                <h3>Password:</h3>
+                <input class="textField" type="password" name="pwd">
+            </div>
+            <div>
+                <input class="bottoni2" type="submit" name="invioReg" value="REGISTRATI">
+            </div>
+            </form>
             <?php
-                if(isset($_POST['matricola'])) {
-                    echo "<input class=\"textField\" type=\"text\" name=\"matricola\" value=\"{$_POST['matricola']}\">";
-                }
-                elseif(!isset($_POST['matricola'])) {
-                    ?>
-                    <input class="textField" type="text" name="matricola">
-                    <?php
+                if(isset($_POST['invioReg']) && ($_POST['matricola'] == "" || $_POST['pwd'] == "" || $_POST['nome'] == "" || $_POST['cognome'] == "")) {
+                    echo "
+                        <div class=\"box3\">
+                            <h2 class=\"error\">DATI MANCANTI! Riprovare.</h2>
+                        </div>
+                    ";
                 }
             ?>
-            <h3>Nome:</h3>
-            <?php
-                if(isset($_POST['nome'])) {
-                    echo "<input class=\"textField\" type=\"text\" name=\"nome\" value=\"{$_POST['nome']}\">";
-                }
-                elseif(!isset($_POST['nome'])) {
-                    ?>
-                    <input class="textField" type="text" name="nome">
-                    <?php
-                }
-            ?>
-            <h3>Cognome:</h3>
-            <?php
-                if(isset($_POST['cognome'])) {
-                    echo "<input class=\"textField\" type=\"text\" name=\"cognome\" value=\"{$_POST['cognome']}\">";
-                }
-                elseif(!isset($_POST['cognome'])) {
-                    ?>
-                    <input class="textField" type="text" name="cognome">
-                    <?php
-                }
-            ?>
-            <h3>Password:</h3>
-            <input class="textField" type="password" name="pwd">
-        </div>
-        <div>
-            <input class="bottoni2" type="submit" name="invioReg" value="REGISTRATI">
-        </div>
-        </form>
-        <?php
-            if(isset($_POST['invioReg']) && ($_POST['matricola'] == "" || $_POST['pwd'] == "" || $_POST['nome'] == "" || $_POST['cognome'] == "")) {
-                echo "
-                    <div class=\"box3\">
-                        <h2 class=\"error\">DATI MANCANTI! Riprovare.</h2>
-                    </div>
-                ";
-            }
-        ?>
     </div>
 </div>
 

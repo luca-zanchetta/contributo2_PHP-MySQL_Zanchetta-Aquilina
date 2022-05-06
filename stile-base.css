@@ -119,7 +119,7 @@ div.body {
     display: flex;
     flex: 1;   
     overflow: scroll;
-    height: 100vh;
+    height: 87vh;
     flex-direction: column;
     padding-bottom: 2%;
 }

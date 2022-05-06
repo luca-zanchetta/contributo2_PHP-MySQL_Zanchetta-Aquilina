@@ -8,6 +8,7 @@ body {
     background-attachment: fixed;
     line-height: 1.5em;
     margin: 0;
+    overflow: hidden;
 }
 /*Barra Di navigazione fissata in alto*/
 div.header {
@@ -19,7 +20,6 @@ div.header {
     z-index: 100;
     width: 100%;
     position:sticky;
-    height: 6.5em;
 }
 div.nav-left {
     display: flex;
@@ -90,13 +90,14 @@ a.opzione:hover{
 div.central-block {
     display: flex;
     text-align: center;
+    overflow: hidden;
 }
 div.body {
     padding-top: 2%;
     display: flex;
     flex: 1;
-    height: 100vh;
-    overflow: scroll;
+    height: 70vh;
+    overflow-y: scroll;
     flex-direction: column;
 }
 div.body-title {
