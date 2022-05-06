@@ -51,7 +51,7 @@ if(isset($_POST['matricola']) && isset($_POST['nome']) && isset($_POST['cognome'
                             </h2>
                     </div>
                     <div class=\"nav-right\">
-                        <img src=\"https://w7.pngwing.com/pngs/73/580/png-transparent-arturia-business-logo-musical-instruments-individual-retirement-account-logo-business-sound.png\" alt=\"dasdas\" width=\"100px\">
+                        <img src=\"account.png\" alt=\"dasdas\" width=\"100px\">
                     </div>
                 </div>
                 <div class=\"central-block\">
@@ -99,7 +99,7 @@ if(isset($_POST['matricola']) && isset($_POST['nome']) && isset($_POST['cognome'
                             </h2>
                     </div>
                     <div class=\"nav-right\">
-                        <img src=\"https://w7.pngwing.com/pngs/73/580/png-transparent-arturia-business-logo-musical-instruments-individual-retirement-account-logo-business-sound.png\" alt=\"dasdas\" width=\"100px\">
+                        <img src=\"account.png\" alt=\"dasdas\" width=\"100px\">
                     </div>
                 </div>
                 <div class=\"central-block\">
@@ -148,7 +148,7 @@ if(isset($_POST['matricola']) && isset($_POST['nome']) && isset($_POST['cognome'
                             </h2>
                     </div>
                     <div class=\"nav-right\">
-                        <img src=\"https://w7.pngwing.com/pngs/73/580/png-transparent-arturia-business-logo-musical-instruments-individual-retirement-account-logo-business-sound.png\" alt=\"dasdas\" width=\"100px\">
+                        <img src=\"account.png\" alt=\"dasdas\" width=\"100px\">
                     </div>
                 </div>
                 <div class=\"central-block\">
