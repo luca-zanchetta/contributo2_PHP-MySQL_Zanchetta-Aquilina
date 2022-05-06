@@ -16,7 +16,10 @@
                 $nome = $row['nome'];
             }
         }
-    }else include("login.php");
+    }else  {
+        header("Location: login.php");
+        exit();
+    }
 ?>
 
 <?xml version="1.0" encoding="UTF-8"?>

@@ -17,7 +17,10 @@
                 $nome = $row['nome'];
             }
         }
-    }else include("login.php");
+    }else  {
+        header("Location: login.php");
+        exit();
+    }
 
     //effettuiamo l'iscrizione all'esame
     $nome_esame = $_GET['corso'];

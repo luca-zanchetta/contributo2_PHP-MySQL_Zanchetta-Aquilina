@@ -17,7 +17,10 @@
                 $nome = $row['nome'];
             }
         }
-    }else include("login.php");
+    }else  {
+        header("Location: login.php");
+        exit();
+    }
 
     //effettuiamo la cancellazione dell'iscrizione al corso
     $id_corso = $_GET['corso'];

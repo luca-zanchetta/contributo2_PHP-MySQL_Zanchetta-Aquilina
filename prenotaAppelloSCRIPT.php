@@ -17,7 +17,10 @@
                 $nome = $row['nome'];
             }
         }
-    }else include("login.php");
+    }else  {
+        header("Location: login.php");
+        exit();
+    }
 
     //effettuiamo la prenotazione dell'appello selezionato
     $id_appello = $_GET['appello'];
