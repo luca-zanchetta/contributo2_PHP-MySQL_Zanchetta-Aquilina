@@ -2,9 +2,9 @@
 #                   Script per la connesione al db
 
 $host = "localhost";
-$mysql_user = "admin";
-$mysql_pwd = "admin";
-$db_name = "infostud";
+$mysql_user = "lweb44";
+$mysql_pwd = "lweb44";
+$db_name = "lweb44";
         
         
 $mysqliConnection = new mysqli($host, $mysql_user, $mysql_pwd, $db_name);

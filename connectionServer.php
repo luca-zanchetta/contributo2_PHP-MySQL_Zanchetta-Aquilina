@@ -2,8 +2,8 @@
 #                   Script per la connesione al server
 
 $host = "localhost";
-$mysql_user = "admin";
-$mysql_pwd = "admin";
+$mysql_user = "lweb44";
+$mysql_pwd = "lweb44";
         
         
 $mysqliConnection = new mysqli($host, $mysql_user, $mysql_pwd);
