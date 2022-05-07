@@ -69,7 +69,7 @@ $sqlCreate3 = "CREATE TABLE IF NOT EXISTS corso (
     curriculum varchar(30), 
     semestre varchar(10), 
     cfu SMALLINT, 
-    ssd varchar(15);
+    ssd varchar(15),
   
     unique(nome)
 );";
