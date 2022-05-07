@@ -15,6 +15,7 @@ mysqli_report(MYSQLI_REPORT_ALL); // Per la gestione delle eccezioni dovute a mo
 
 // Collegamento al db
 include("connection.php");
+ini_set('display_errors', 1);
 
 
 
