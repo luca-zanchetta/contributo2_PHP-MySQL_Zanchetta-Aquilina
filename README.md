@@ -8,7 +8,7 @@ Contribuenti:
 
 Indirizzo del repository: https://github.com/luca-zanchetta/contributo2_PHP-MySQL_Zanchetta-Aquilina
 
-Indirizzo web del sito nel server lweb: 
+Indirizzo web del sito nel server lweb: non piu'
  1. Luca Zanchetta: http://lweb.diag.uniroma1.it/~lweb44/BRIDGE/contributo2_PHP-MySQL_Zanchetta-Aquilina-main/
  2. Mattia Aquilina: 
 
